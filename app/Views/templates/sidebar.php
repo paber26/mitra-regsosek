@@ -13,7 +13,7 @@
             </div>
             <div class="profile_info">
                 <span>Halo</span>
-                <h2>Bernaldo Napitupulu asdfasf</h2>
+                <h2><?= $nama; ?></h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -27,15 +27,13 @@
                 <ul class="nav side-menu">
                     <li><a><i class="fa fa-home"></i> Regsosek 2022<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="/regsosek2022">Dashboard</a></li>
+                            <li><a href="/">Dashboard</a></li>
                             <li><a href="/regsosek2022/absensi">Absensi</a></li>
                             <li><a href="/regsosek2022/arusdokumen">Arus Dokumen</a></li>
                             <li><a href="/regsosek2022/dokumenerror">Dokumen Error</a></li>
                             <li><a href="/regsosek2022/daftarsls">Daftar SLS</a></li>
-                            <li><a href="/regsosek2022/petugas">Petugas</a></li>
                         </ul>
                     </li>
-                    <li><a href="/mitra"><i class="fa fa-laptop"></i>Mitra</a></li>
                 </ul>
             </div>
 

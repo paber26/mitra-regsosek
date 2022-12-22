@@ -3,11 +3,41 @@
     <div class="">
 
         <div class="row">
+            <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Absensi <small>2022-12-22</small></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th class="text-center">Jam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Datang</td>
+                                    <th class="text-center">08.30</th>
+                                </tr>
+                                <tr>
+                                    <td>Pulang (belum diisi)</td>
+                                    <td class="text-center"><a href="/regsosek2022/absensi/pulang" class="btn btn-secondary btn-sm">Cek</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
 
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Absensi Regsosek 2022</h2>
+                        <h2>Kehadiran</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

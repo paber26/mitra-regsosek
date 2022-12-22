@@ -37,9 +37,12 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 // $routes->group('', ['filter' => 'login'], function ($routes) {
 
-$routes->get('/', 'Home::index');
-$routes->get('/regsosek2022', 'Regsosek2022::index');
+$routes->get('/', 'Regsosek2022::index');
+// $routes->get('/regsosek2022', 'Regsosek2022::index');
 $routes->get('/regsosek2022/absensi', 'Regsosek2022::absensi');
+$routes->get('/regsosek2022/absensi/(:alpha)', 'Regsosek2022::absensi/$1');
+
+
 $routes->get('/regsosek2022/arusdokumen', 'Regsosek2022::arusdokumen');
 $routes->get('/regsosek2022/arusdokumen/(:num)', 'Regsosek2022::arusdokumenedit/$1');
 $routes->post('/regsosek2022/arusdokumen/(:num)', 'Regsosek2022::arusdokumenedit/$1');
@@ -50,8 +53,6 @@ $routes->get('/regsosek2022/dokumenerror/(:num)/(:num)', 'Regsosek2022::dokumene
 $routes->post('/regsosek2022/dokumenerror/(:num)/(:num)', 'Regsosek2022::dokumenerrorlihat/$1/$2');
 
 $routes->get('/regsosek2022/daftarsls', 'Regsosek2022::daftarsls');
-$routes->get('/regsosek2022/petugas', 'Regsosek2022::petugas');
-$routes->get('/regsosek2022/petugastambah', 'Regsosek2022::petugastambah');
 
 $routes->get('/mitra', 'Mitra::index');
 $routes->get('/mitra/tambah', 'Mitra::tambah');

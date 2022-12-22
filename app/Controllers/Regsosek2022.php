@@ -12,6 +12,8 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Regsosek2022 extends BaseController
 {
+    protected $user;
+
     protected $db;
     protected $users;
     protected $userinfo;
@@ -23,8 +25,12 @@ class Regsosek2022 extends BaseController
     public function __construct()
     {
         $this->db = db_connect();
-        $this->users = $this->db->table('users');
         $this->userinfo = $this->db->table('userinfo');
+
+        $email = service('authentication')->user()->email;
+        $this->user = $this->userinfo->where('email', $email)->get()->getRowArray();
+
+        $this->users = $this->db->table('users');
         $this->sls = $this->db->table('sls');
         $this->arusdokumen = $this->db->table('regsosek2022_arusdokumen as ad');
         $this->dokumenerror = $this->db->table('regsosek2022_dokumenerror as de');
@@ -33,17 +39,22 @@ class Regsosek2022 extends BaseController
     public function index()
     {
         return view('templates/header')
-            . view('templates/sidebar')
+            . view('templates/sidebar', $this->user)
             . view('templates/topbar')
             . view('regsosek2022/index');
     }
 
-    public function absensi()
+    public function absensi($status = null)
     {
-        return view('templates/header')
-            . view('templates/sidebar')
-            . view('templates/topbar')
-            . view('regsosek2022/absensi');
+        if ($status == null) {
+            return view('templates/header')
+                . view('templates/sidebar', $this->user)
+                . view('templates/topbar')
+                . view('regsosek2022/absensi');
+        } else {
+            if ($status == 'pulang') {
+            }
+        }
     }
 
     public function arusdokumen()
@@ -54,7 +65,7 @@ class Regsosek2022 extends BaseController
 
         // dd($data['arusdokumen']);
         return view('templates/header')
-            . view('templates/sidebar')
+            . view('templates/sidebar', $this->user)
             . view('templates/topbar')
             . view('regsosek2022/arusdokumen', $data);
     }
@@ -73,7 +84,7 @@ class Regsosek2022 extends BaseController
             // dd($data);
 
             return view('templates/header')
-                . view('templates/sidebar')
+                . view('templates/sidebar', $this->user)
                 . view('templates/topbar')
                 . view('regsosek2022/arusdokumenedit', $data);
         } else {
@@ -149,7 +160,7 @@ class Regsosek2022 extends BaseController
         // dd($dat);
 
         return view('templates/header')
-            . view('templates/sidebar')
+            . view('templates/sidebar', $this->user)
             . view('templates/topbar')
             . view('regsosek2022/dokumenerror', $data);
     }
@@ -169,7 +180,7 @@ class Regsosek2022 extends BaseController
             // dd($dat);
 
             return view('templates/header')
-                . view('templates/sidebar')
+                . view('templates/sidebar', $this->user)
                 . view('templates/topbar')
                 . view('regsosek2022/dokumenerrorlihat', $data);
         } else {
@@ -192,7 +203,7 @@ class Regsosek2022 extends BaseController
                 // dd($data);
 
                 return view('templates/header')
-                    . view('templates/sidebar')
+                    . view('templates/sidebar', $this->user)
                     . view('templates/topbar')
                     . view('regsosek2022/dokumenerroredit', $data);
             }
@@ -205,7 +216,7 @@ class Regsosek2022 extends BaseController
         // dd($data);
 
         return view('templates/header')
-            . view('templates/sidebar')
+            . view('templates/sidebar', $this->user)
             . view('templates/topbar')
             . view('regsosek2022/petugas', $data);
     }
@@ -213,7 +224,7 @@ class Regsosek2022 extends BaseController
     public function petugastambah()
     {
         return view('templates/header')
-            . view('templates/sidebar')
+            . view('templates/sidebar', $this->user)
             . view('templates/topbar')
             . view('regsosek2022/petugastambah');
     }
@@ -224,7 +235,7 @@ class Regsosek2022 extends BaseController
         // dd($data['slss']);
 
         return view('templates/header')
-            . view('templates/sidebar')
+            . view('templates/sidebar', $this->user)
             . view('templates/topbar')
             . view('regsosek2022/daftarsls', $data);
     }
