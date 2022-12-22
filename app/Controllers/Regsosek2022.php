@@ -5,6 +5,7 @@ namespace App\Controllers;
 // require 'vendor/autoload.php';
 
 use App\Controllers\BaseController;
+use DateTime;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -12,6 +13,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Regsosek2022 extends BaseController
 {
+    protected $email;
     protected $user;
 
     protected $db;
@@ -20,6 +22,7 @@ class Regsosek2022 extends BaseController
     protected $sls;
     protected $arusdokumen;
     protected $dokumenerror;
+    protected $absensi;
 
 
     public function __construct()
@@ -27,13 +30,14 @@ class Regsosek2022 extends BaseController
         $this->db = db_connect();
         $this->userinfo = $this->db->table('userinfo');
 
-        $email = service('authentication')->user()->email;
-        $this->user = $this->userinfo->where('email', $email)->get()->getRowArray();
+        $this->email = service('authentication')->user()->email;
+        $this->user = $this->userinfo->where('email', $this->email)->get()->getRowArray();
 
         $this->users = $this->db->table('users');
         $this->sls = $this->db->table('sls');
         $this->arusdokumen = $this->db->table('regsosek2022_arusdokumen as ad');
         $this->dokumenerror = $this->db->table('regsosek2022_dokumenerror as de');
+        $this->absensi = $this->db->table('regsosek2022_absensi as ab');
     }
 
     public function index()
@@ -47,13 +51,44 @@ class Regsosek2022 extends BaseController
     public function absensi($status = null)
     {
         if ($status == null) {
+            $data['datang'] = $this->absensi->where('email', $this->email)->where('status', 'datang')
+                ->where('tanggal', date('Y-m-d'))->get()->getRowArray();
+            $data['pulang'] = $this->absensi->where('email', $this->email)->where('status', 'pulang')
+                ->where('tanggal', date('Y-m-d'))->get()->getRowArray();
+
             return view('templates/header')
                 . view('templates/sidebar', $this->user)
                 . view('templates/topbar')
-                . view('regsosek2022/absensi');
+                . view('regsosek2022/absensi', $data);
         } else {
-            if ($status == 'pulang') {
+            $cek = $this->absensi->where('email', $this->email)->where('status', $status)->orderBy('id', 'DESC')->get()->getRowArray();
+            if ($cek != null) {
+                if ($status == 'datang') {
+                    if ($cek['tanggal'] != date('Y-m-d')) {
+                        $this->absensi->insert([
+                            'email' => $this->email,
+                            'jam' => date("H:i:s"),
+                            'status' => 'datang'
+                        ]);
+                    }
+                } else if ($status == 'pulang') {
+                    if ($cek['tanggal'] != date('Y-m-d')) {
+                        $this->absensi->insert([
+                            'email' => $this->email,
+                            'jam' => date("H:i:s"),
+                            'status' => 'pulang'
+                        ]);
+                    }
+                }
+            } else {
+                $this->absensi->insert([
+                    'email' => $this->email,
+                    'tanggal' => date('Y-m-d'),
+                    'jam' => date("H:i:s"),
+                    'status' => $status
+                ]);
             }
+            return redirect()->to(base_url('/regsosek2022/absensi'));
         }
     }
 
@@ -80,8 +115,6 @@ class Regsosek2022 extends BaseController
 
             $data['mitras'] = $this->userinfo->select('email, nama')
                 ->where('regsosek2022', 1)->get()->getResultArray();
-
-            // dd($data);
 
             return view('templates/header')
                 . view('templates/sidebar', $this->user)

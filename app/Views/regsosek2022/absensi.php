@@ -13,19 +13,29 @@
 
                         <table class="table table-striped">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>Status</th>
-                                    <th class="text-center">Jam</th>
+                                    <th>Jam</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Datang</td>
-                                    <th class="text-center">08.30</th>
+                                <tr class="text-center">
+                                    <?php if ($datang == null) : ?>
+                                        <td>Datang (belum diisi)</td>
+                                        <td><a href="/regsosek2022/absensi/datang" class="btn btn-secondary btn-sm">Cek</a></td>
+                                    <?php else : ?>
+                                        <td>Datang</td>
+                                        <th><?= $datang['jam']; ?></th>
+                                    <?php endif ?>
                                 </tr>
-                                <tr>
-                                    <td>Pulang (belum diisi)</td>
-                                    <td class="text-center"><a href="/regsosek2022/absensi/pulang" class="btn btn-secondary btn-sm">Cek</a></td>
+                                <tr class="text-center">
+                                    <?php if ($pulang == null) : ?>
+                                        <td>Pulang (belum diisi)</td>
+                                        <td><a href="/regsosek2022/absensi/pulang" class="btn btn-secondary btn-sm">Cek</a></td>
+                                    <?php else : ?>
+                                        <td>Pulang</td>
+                                        <th><?= $pulang['jam']; ?></th>
+                                    <?php endif ?>
                                 </tr>
                             </tbody>
                         </table>
