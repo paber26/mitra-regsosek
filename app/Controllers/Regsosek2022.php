@@ -51,41 +51,26 @@ class Regsosek2022 extends BaseController
     public function absensi($status = null)
     {
         if ($status == null) {
-            $data['datang'] = $this->absensi->where('email', $this->email)->where('status', 'datang')
-                ->where('tanggal', date('Y-m-d'))->get()->getRowArray();
-            $data['pulang'] = $this->absensi->where('email', $this->email)->where('status', 'pulang')
-                ->where('tanggal', date('Y-m-d'))->get()->getRowArray();
+            $data['absensi'] = $this->absensi->where('email', $this->email)->where('tanggal', date('Y-m-d'))->get()->getRowArray();
+
+            $data['kehadiran'] = $this->absensi->select('ab.*, userinfo.nama')
+                ->join('userinfo', 'ab.email = userinfo.email', 'left')->get()->getResultArray();
 
             return view('templates/header')
                 . view('templates/sidebar', $this->user)
                 . view('templates/topbar')
                 . view('regsosek2022/absensi', $data);
         } else {
-            $cek = $this->absensi->where('email', $this->email)->where('status', $status)->orderBy('id', 'DESC')->get()->getRowArray();
-            if ($cek != null) {
-                if ($status == 'datang') {
-                    if ($cek['tanggal'] != date('Y-m-d')) {
-                        $this->absensi->insert([
-                            'email' => $this->email,
-                            'jam' => date("H:i:s"),
-                            'status' => 'datang'
-                        ]);
-                    }
-                } else if ($status == 'pulang') {
-                    if ($cek['tanggal'] != date('Y-m-d')) {
-                        $this->absensi->insert([
-                            'email' => $this->email,
-                            'jam' => date("H:i:s"),
-                            'status' => 'pulang'
-                        ]);
-                    }
-                }
-            } else {
+            $cek = $this->absensi->where('email', $this->email)->where('tanggal', date('Y-m-d'))->get()->getRowArray();
+            if (($cek == null) && (date('H:i:s') > '07:30:00') && ($status == 'datang')) {
                 $this->absensi->insert([
                     'email' => $this->email,
                     'tanggal' => date('Y-m-d'),
-                    'jam' => date("H:i:s"),
-                    'status' => $status
+                    'datang' => date("H:i:s"),
+                ]);
+            } else if (($cek != null) && ($status == 'pulang') && (date('H:i:s') > '15:00:00')) {
+                $this->absensi->where('email', $this->email)->where('tanggal', date('Y-m-d'))->update([
+                    'pulang' => date("H:i:s"),
                 ]);
             }
             return redirect()->to(base_url('/regsosek2022/absensi'));
@@ -98,7 +83,6 @@ class Regsosek2022 extends BaseController
             ->join('regsosek2022_arusdokumen as arusdk', 'sls.k_wil = arusdk.k_wil', 'left')
             ->get()->getResultArray();
 
-        // dd($data['arusdokumen']);
         return view('templates/header')
             . view('templates/sidebar', $this->user)
             . view('templates/topbar')

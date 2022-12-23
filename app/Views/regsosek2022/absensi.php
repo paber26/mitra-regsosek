@@ -6,7 +6,7 @@
             <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Absensi <small>2022-12-22</small></h2>
+                        <h2>Absensi <small><?= date('Y-m-d'); ?></small></h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -20,21 +20,21 @@
                             </thead>
                             <tbody>
                                 <tr class="text-center">
-                                    <?php if ($datang == null) : ?>
+                                    <?php if ($absensi == null) : ?>
                                         <td>Datang (belum diisi)</td>
                                         <td><a href="/regsosek2022/absensi/datang" class="btn btn-secondary btn-sm">Cek</a></td>
                                     <?php else : ?>
                                         <td>Datang</td>
-                                        <th><?= $datang['jam']; ?></th>
+                                        <th><?= $absensi['datang']; ?></th>
                                     <?php endif ?>
                                 </tr>
                                 <tr class="text-center">
-                                    <?php if ($pulang == null) : ?>
+                                    <?php if (($absensi == null) || ($absensi['pulang'] == null)) : ?>
                                         <td>Pulang (belum diisi)</td>
                                         <td><a href="/regsosek2022/absensi/pulang" class="btn btn-secondary btn-sm">Cek</a></td>
                                     <?php else : ?>
                                         <td>Pulang</td>
-                                        <th><?= $pulang['jam']; ?></th>
+                                        <th><?= $absensi['pulang']; ?></th>
                                     <?php endif ?>
                                 </tr>
                             </tbody>
@@ -58,20 +58,20 @@
                                         <thead>
                                             <tr>
                                                 <th>Nama</th>
-                                                <th>Hari</th>
-                                                <th>Masuk</th>
-                                                <th>Pulang</th>
+                                                <td class="text-center">Tanggal</th>
+                                                <td class="text-center">Masuk</th>
+                                                <td class="text-center">Pulang</th>
                                             </tr>
                                         </thead>
-
-
                                         <tbody>
-                                            <tr>
-                                                <td>Bernaldo Napitupulu</td>
-                                                <td>2022/12/14</td>
-                                                <td>08:30</td>
-                                                <td>18:00</td>
-                                            </tr>
+                                            <?php foreach ($kehadiran as $k) : ?>
+                                                <tr>
+                                                    <td><?= $k['nama']; ?></td>
+                                                    <td class="text-center"><?= $k['tanggal']; ?></td>
+                                                    <td class="text-center"><?= $k['datang']; ?></td>
+                                                    <td class="text-center"><?= $k['pulang']; ?></td>
+                                                </tr>
+                                            <?php endforeach ?>
                                         </tbody>
                                     </table>
                                 </div>
