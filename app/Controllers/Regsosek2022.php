@@ -67,6 +67,7 @@ class Regsosek2022 extends BaseController
                     if ($cek['tanggal'] != date('Y-m-d')) {
                         $this->absensi->insert([
                             'email' => $this->email,
+                            'tanggal' => date('Y-m-d'),
                             'jam' => date("H:i:s"),
                             'status' => 'datang'
                         ]);
@@ -75,6 +76,7 @@ class Regsosek2022 extends BaseController
                     if ($cek['tanggal'] != date('Y-m-d')) {
                         $this->absensi->insert([
                             'email' => $this->email,
+                            'tanggal' => date('Y-m-d'),
                             'jam' => date("H:i:s"),
                             'status' => 'pulang'
                         ]);
