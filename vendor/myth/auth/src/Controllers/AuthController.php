@@ -50,7 +50,6 @@ class AuthController extends Controller
             $redirectURL = session('redirect_url') ?? site_url('/');
             unset($_SESSION['redirect_url']);
 
-            dd('oke');
             return redirect()->to($redirectURL);
         }
 
