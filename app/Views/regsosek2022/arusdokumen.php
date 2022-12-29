@@ -23,7 +23,6 @@
                                                 <th>Mitra</th>
                                                 <th>Kembali Ke TU</th>
                                                 <th>Keterangan</th>
-                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -35,7 +34,6 @@
                                                     <td class="text-center"><?php echo $arus['mitra'] != null ? $arus['mitra'] : '-'; ?></td>
                                                     <td class="text-center"><?php echo $arus['kembali_tu'] != null ? $arus['kembali_tu'] : '-'; ?></td>
                                                     <td class="text-center"><?php echo $arus['ket'] != null ? $arus['ket'] : '-'; ?></td>
-                                                    <td><a href="<?php echo '/regsosek2022/arusdokumen/' . $arus['k_wil'] ?>" class="btn btn-secondary btn-sm">Edit</a></td>
                                                 </tr>
                                             <?php endforeach ?>
                                         </tbody>

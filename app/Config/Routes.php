@@ -44,8 +44,6 @@ $routes->get('/regsosek2022/absensi/(:alpha)', 'Regsosek2022::absensi/$1');
 
 
 $routes->get('/regsosek2022/arusdokumen', 'Regsosek2022::arusdokumen');
-$routes->get('/regsosek2022/arusdokumen/(:num)', 'Regsosek2022::arusdokumenedit/$1');
-$routes->post('/regsosek2022/arusdokumen/(:num)', 'Regsosek2022::arusdokumenedit/$1');
 
 $routes->get('/regsosek2022/dokumenerror', 'Regsosek2022::dokumenerror');
 $routes->get('/regsosek2022/dokumenerror/(:num)', 'Regsosek2022::dokumenerrorlihat/$1');

@@ -1,0 +1,20 @@
+CRITICAL - 2022-12-26 06:15:07 --> Undefined variable $diterima_ipds_persen
+in APPPATH\Views\regsosek2022\index.php on line 32.
+ 1 APPPATH\Views\regsosek2022\index.php(32): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $diterima_ipds_persen', 'APPPATH\\Views\\regsosek2022\\index.php', 32)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\regsosek2022\\index.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1134): CodeIgniter\View\View->render('regsosek2022/index', [], true)
+ 5 APPPATH\Controllers\Regsosek2022.php(48): view('regsosek2022/index')
+ 6 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Regsosek2022->index()
+ 7 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Regsosek2022))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2022-12-26 06:16:03 --> Undefined property: App\Controllers\Regsosek2022::$entrian
+in APPPATH\Controllers\Regsosek2022.php on line 92.
+ 1 APPPATH\Controllers\Regsosek2022.php(92): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\Regsosek2022::$entrian', 'APPPATH\\Controllers\\Regsosek2022.php', 92)
+ 2 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Regsosek2022->index()
+ 3 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Regsosek2022))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
