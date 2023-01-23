@@ -145,52 +145,19 @@ class Regsosek2022 extends BaseController
 
     public function dokumenerror()
     {
-        $spreadsheet = new Spreadsheet();
-        // $sheet = $spreadsheet->getActiveSheet();
-        // $sheet->setCellValue('A1', 'Hello World !');
-
-
-        // $writer = new Xlsx($spreadsheet);
-        // $writer->save('hello world.xlsx');
-
-        // $spreadsheet = IOFactory::load('write.xls');
-
-        // $worksheet = $spreadsheet->getActiveSheet();
-
-        // for ($i = 1; $i < 3; $i++) {
-        //     echo $worksheet->getCell('A' . $i)->getValue();
-        // }
-        // dd('ok');
-
-        // $worksheet->getCell('A2')->setValue();
-
-        // $writer = IOFactory::createWriter($spreadsheet, 'Xls');
-        // $writer->save('write.xls');
-
-        // dd('oke');
-
         $de = $this->dokumenerror->select('k_wil')->distinct()->get()->getResultArray();
 
         $data['dokumenerror'] = [];
         foreach ($de as $d) {
             $mitra = $this->arusdokumen->where('k_wil', $d['k_wil'])->get()->getRowArray();
-            // dd($mitra);
+
             array_push($data['dokumenerror'], [
                 'k_wil' => $d['k_wil'],
                 'mitra' => $mitra == null ? '-' : $mitra['mitra'],
                 'total_error' => $this->dokumenerror->where('k_wil', $d['k_wil'])->countAllResults(),
-                'diperbaiki' => $this->dokumenerror->where('k_wil', $d['k_wil'])->where('perlakuan !=', null)->countAllResults()
+                'diperbaiki' => $this->dokumenerror->where('k_wil', $d['k_wil'])->where('cek', 'sudah')->countAllResults()
             ]);
         }
-        // dd($data['dokumenerror']);
-
-        // $data['dokumenerror'] = $this->arusdokumen->join('regsosek2022_dokumenerror as e', 'ad.k_wil = e.k_wil')
-        //     ->get()->getResultArray();
-
-        // $dat = $this->arusdokumen->select('ad.k_wil')->distinct()
-        //     ->join('regsosek2022_dokumenerror as e', 'ad.k_wil = e.k_wil')
-        //     ->get()->getResultArray();
-        // dd($dat);
 
         return view('templates/header')
             . view('templates/sidebar', $this->user)
