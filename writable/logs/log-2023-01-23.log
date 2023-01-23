@@ -1,0 +1,24 @@
+CRITICAL - 2023-01-23 14:09:32 --> Array to string conversion
+in APPPATH\Views\regsosek2022\dokumenerrorlihat.php on line 10.
+ 1 APPPATH\Views\regsosek2022\dokumenerrorlihat.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Views\\regsosek2022\\dokumenerrorlihat.php', 10)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\regsosek2022\\dokumenerrorlihat.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1134): CodeIgniter\View\View->render('regsosek2022/dokumenerrorlihat', [], true)
+ 5 APPPATH\Controllers\Regsosek2022.php(211): view('regsosek2022/dokumenerrorlihat', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Regsosek2022->dokumenerrorlihat('1206071009000200')
+ 7 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Regsosek2022))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')
+CRITICAL - 2023-01-23 14:09:39 --> Undefined array key 0
+in APPPATH\Views\regsosek2022\dokumenerrorlihat.php on line 10.
+ 1 APPPATH\Views\regsosek2022\dokumenerrorlihat.php(10): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'APPPATH\\Views\\regsosek2022\\dokumenerrorlihat.php', 10)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\regsosek2022\\dokumenerrorlihat.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1134): CodeIgniter\View\View->render('regsosek2022/dokumenerrorlihat', [], true)
+ 5 APPPATH\Controllers\Regsosek2022.php(211): view('regsosek2022/dokumenerrorlihat', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(927): App\Controllers\Regsosek2022->dokumenerrorlihat('1206071009000200')
+ 7 SYSTEMPATH\CodeIgniter.php(482): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Regsosek2022))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(46): require_once('FCPATH\\index.php')

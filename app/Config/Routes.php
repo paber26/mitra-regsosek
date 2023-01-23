@@ -50,6 +50,8 @@ $routes->get('/regsosek2022/dokumenerror/(:num)', 'Regsosek2022::dokumenerrorlih
 $routes->get('/regsosek2022/dokumenerror/(:num)/(:num)', 'Regsosek2022::dokumenerrorlihat/$1/$2');
 $routes->post('/regsosek2022/dokumenerror/(:num)/(:num)', 'Regsosek2022::dokumenerrorlihat/$1/$2');
 
+$routes->get('/regsosek2022/dokumenerrorcek/(:num)/(:num)/(:alpha)', 'Regsosek2022::dokumenerrorcek/$1/$2/$3');
+
 $routes->get('/regsosek2022/daftarsls', 'Regsosek2022::daftarsls');
 
 $routes->get('/mitra', 'Mitra::index');

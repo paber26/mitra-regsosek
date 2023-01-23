@@ -5,7 +5,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Tambah Mitra</h2>
+                        <h2>Edit dokumen error</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -58,14 +58,21 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Validasi</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control" type="text" name="validasi" value="<?= $dokumenerror['validasi']; ?>" />
+                                    <textarea disabled class="form-control"><?= $dokumenerror['validasi']; ?></textarea>
                                 </div>
                             </div>
 
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Perlakuan</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control" type="text" name="perlakuan" value="<?= $dokumenerror['perlakuan']; ?>" />
+                                    <textarea disabled class="form-control"><?= $dokumenerror['perlakuan']; ?></textarea>
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Catatan</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <textarea class="form-control" name="catatan"><?= $dokumenerror['catatan']; ?></textarea>
                                 </div>
                             </div>
 

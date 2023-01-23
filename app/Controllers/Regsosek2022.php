@@ -205,13 +205,6 @@ class Regsosek2022 extends BaseController
                 ->join('regsosek2022_dokumenerror as e', 'ad.k_wil = e.k_wil')
                 ->get()->getResultArray();
 
-            // dd($data);
-
-            // $dat = $this->arusdokumen->select('ad.k_wil')->distinct()
-            //     ->join('regsosek2022_dokumenerror as e', 'ad.k_wil = e.k_wil')
-            //     ->get()->getResultArray();
-            // dd($dat);
-
             return view('templates/header')
                 . view('templates/sidebar', $this->user)
                 . view('templates/topbar')
@@ -219,8 +212,7 @@ class Regsosek2022 extends BaseController
         } else {
             if ($this->request->getPost() != null) {
                 $this->dokumenerror->set([
-                    'validasi' => strtoupper($this->request->getPost('validasi')),
-                    'perlakuan' => $this->request->getPost('perlakuan'),
+                    'catatan' => $this->request->getPost('catatan'),
                 ])->where('id', $id)->update();
 
                 return redirect()->to(base_url('/regsosek2022/dokumenerror/' . $kodewilayah));
@@ -233,14 +225,26 @@ class Regsosek2022 extends BaseController
 
                 $data['dokumenerror'] = $this->dokumenerror->where('id', $id)->get()->getRowArray();
 
-                // dd($data);
-
                 return view('templates/header')
                     . view('templates/sidebar', $this->user)
                     . view('templates/topbar')
                     . view('regsosek2022/dokumenerroredit', $data);
             }
         }
+    }
+
+    public function dokumenerrorcek($kodewilayah, $id, $cek)
+    {
+        if ($cek == 'sudah') {
+            $this->dokumenerror->set([
+                'cek' => 'sudah'
+            ])->where('id', $id)->update();
+        } else if ($cek == 'belum') {
+            $this->dokumenerror->set([
+                'cek' => 'belum'
+            ])->where('id', $id)->update();
+        }
+        return redirect()->to(base_url('/regsosek2022/dokumenerror/' . $kodewilayah));
     }
 
     public function petugas()
