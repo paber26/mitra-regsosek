@@ -27,7 +27,7 @@
 
                                         <tbody>
                                             <?php foreach ($dokumenerror as $dok) : ?>
-                                                <tr>
+                                                <tr class="<?php echo ($dok['total_error'] == $dok['diperbaiki']) ? 'bg-success text-white' : '' ?>">
                                                     <td><?= $dok['k_wil']; ?></td>
                                                     <td><?= $dok['mitra']; ?></td>
                                                     <td><?= $dok['total_error']; ?></td>
