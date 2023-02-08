@@ -34,7 +34,7 @@ CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
 
-app.baseURL = 'https://bernaldonapitupulu.com/'
+app.baseURL = 'https://regsosek2022.bernaldonapitupulu.com/'
 
 # If you have trouble with `.`, you could also use `_`.
 
