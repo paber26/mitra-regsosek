@@ -12,10 +12,6 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
-                    <div class="x_title">
-                        <h2>User Report <small>Activity report</small></h2>
-                        <div class="clearfix"></div>
-                    </div>
                     <div class="x_content">
                         <div class="col-md-3 col-sm-3  profile_left">
                             <div class="profile_img">
@@ -44,12 +40,11 @@
                                         </li>
                                         <li>
                                             <p>Gambar rekening</p>
-
-                                            <?php echo '<img src="https://yt3.ggpht.com/yti/AHXOFjWxygyTbYYqrAK8DoJn5qWDP2__uO0A0YG82_Y=s48-c-k-c0x00ffffff-no-rj">' ?>
-
-                                            <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($gambar_rekening) . '"/>' ?>
-                                            <img src="data:image/jpg;base64,<?php echo base64_encode($gambar_rekening) ?>" />
-                                            <?= base64_encode($gambar_rekening); ?>
+                                            <img src="<?= base_url('img/rekening/' . $gambar_rekening); ?>" class="img-thumbnail" width="60%">
+                                        </li>
+                                        <li>
+                                            <p>Gambar KTP</p>
+                                            <img src="<?= base_url('img/ktp/' . $gambar_ktp); ?>" class="img-thumbnail" width="60%">
                                         </li>
                                     </ul>
                                 </div>

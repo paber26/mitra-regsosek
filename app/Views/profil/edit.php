@@ -49,7 +49,14 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Foto Rekening</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control" name="file" type="file" accept=".png, .jpg, .jpeg" required="">
+                                    <input class="form-control" name="rekening" type="file" accept=".png, .jpg, .jpeg" required="">
+                                </div>
+                            </div>
+
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align">Foto KTP</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input class="form-control" name="ktp" type="file" accept=".png, .jpg, .jpeg" required="">
                                 </div>
                             </div>
 

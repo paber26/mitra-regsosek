@@ -47,28 +47,20 @@ class Profil extends BaseController
 
     public function edit()
     {
-        if (isset($_FILES["file"]["name"]) || $this->request->getPost() != null) {
-            $datagambar = addslashes(file_get_contents($_FILES['file']['tmp_name']));
-            $propertiesgambar = getimageSize($_FILES['file']['tmp_name']);
+        if ($this->request->getPost() != null) {
+            $gambarrekening = $this->request->getFile('rekening');
+            $gambarrekening->move('img/rekening');
+            $namagambarrekening = $gambarrekening->getName();
 
-
-            // dd(base_url('images/') . '/' . basename($_FILES["file"]["tmp_name"]));
-            $targetFile = base_url('images') . '/' . basename($_FILES["file"]["tmp_name"]);
-
-            if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
-                //file was successfully uploaded
-                dd('yes');
-                dd(basename($_FILES["file"]["tmp_name"]));
-            }
-            dd('no');
-
-            dd('no');
+            $gambarktp = $this->request->getFile('ktp');
+            $gambarktp->move('img/ktp');
+            $namagambarktp = $gambarktp->getName();
 
             $this->userinfo->set([
                 'rekening' => $this->request->getPost('rekening'),
                 'nomor_rekening' => $this->request->getPost('nomor_rekening'),
-                'tipe_gambar' => $propertiesgambar['mime'],
-                'gambar_rekening' => $datagambar
+                'gambar_rekening' => $namagambarrekening,
+                'gambar_ktp' => $namagambarktp,
             ])->where('email', $this->user['email'])->update();
 
             return redirect()->to(base_url('/profil'));
